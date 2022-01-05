@@ -1,3 +1,11 @@
+:root {
+  /* ***** Primary Colors ***** */
+  --Main-Pokemon-Logo: #3c5aa6;
+
+  /* 1rem = 10px */
+  font-size: 62.5%;
+}
+
 html,
 body {
   padding: 0;

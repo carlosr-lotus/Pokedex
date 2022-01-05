@@ -1,5 +1,6 @@
 .headerGlobalContainer {
     width: 100%;
+    margin-bottom: 1.5rem;
 
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -9,15 +10,12 @@
 
 /* "Pokemon" Logo */
 .headerGlobalContainer>svg:nth-child(1) {
-    /* margin-left: 80px; */
-    color: #3c5aa6;
-    /* place-self: start;
-    align-self: center; */
+    color: var(--Main-Pokemon-Logo);
 }
 
 /* "Dark Mode" icon */
 .headerGlobalContainer>svg:nth-child(2) {
-    margin-right: 45px;
+    margin-right: 4.5rem;
 
     place-self: end;
     align-self: center;
@@ -27,5 +25,31 @@
 }
 
 .headerGlobalContainer>svg:nth-child(2):hover {
-    fill: blue;
+    fill: var(--Main-Pokemon-Logo);
+}
+
+/* *** Media Queries - Responsive CSS *** */
+@media (max-width:768px) and (orientation: landscape) {
+    .headerGlobalContainer>svg:nth-child(1) {
+        margin-left: 8rem;
+        place-self: start;
+        align-self: center;
+    }
+
+    .headerGlobalContainer>svg:nth-child(2) {
+        margin-right: 6.5rem;
+    }
+}
+
+/* iPads/Tablets */
+@media (min-width: 768px) {
+    .headerGlobalContainer>svg:nth-child(1) {
+        margin-left: 8rem;
+        place-self: start;
+        align-self: center;
+    }
+
+    .headerGlobalContainer>svg:nth-child(2) {
+        margin-right: 6.5rem;
+    }
 }

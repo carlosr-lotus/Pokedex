@@ -1,0 +1,33 @@
+.searchBarContainer {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.searchBarContainer>h1 {
+    width: 80%;
+    margin: 0 auto 1.5rem;
+
+    line-height: 3rem;
+}
+
+.inputPokemonContainer>input {
+    width: 24.5rem;
+    padding: 1.2rem;
+    margin: 0 auto;
+
+    font-size: 1.6rem;
+    padding-left: 4rem;
+
+    border-radius: .5rem;
+    border: 1px solid rgba(66, 66, 66, 0.527);
+
+    box-shadow: 0px 2px 3px rgba(66, 66, 66, 0.527);
+}
+
+.inputPokemonContainer>svg {
+    position: absolute;
+    left: 75px;
+    top: 85px;
+    fill: rgba(66, 66, 66, 0.527);
+}
