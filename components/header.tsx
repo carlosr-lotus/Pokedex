@@ -21,8 +21,10 @@ export default function Header() {
             variants={variants}
             className={styles.headerGlobalContainer}
         >
-            <SiPokemon size={110}></SiPokemon>
-            <MdDarkMode size={25} />
+            <div className={styles.headerItens}>
+                <SiPokemon size={110}></SiPokemon>
+                <MdDarkMode size={25} />
+            </div>
         </motion.div>
     )
 }

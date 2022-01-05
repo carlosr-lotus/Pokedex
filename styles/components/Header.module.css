@@ -1,6 +1,11 @@
 .headerGlobalContainer {
     width: 100%;
     margin-bottom: 1.5rem;
+}
+
+.headerItens {
+    width: 90%;
+    margin: 0 auto;
 
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -9,13 +14,13 @@
 }
 
 /* "Pokemon" Logo */
-.headerGlobalContainer>svg:nth-child(1) {
+.headerItens>svg:nth-child(1) {
     color: var(--Main-Pokemon-Logo);
 }
 
 /* "Dark Mode" icon */
-.headerGlobalContainer>svg:nth-child(2) {
-    margin-right: 4.5rem;
+.headerItens>svg:nth-child(2) {
+    margin-right: 3rem;
 
     place-self: end;
     align-self: center;
@@ -24,32 +29,32 @@
     transition: .2s;
 }
 
-.headerGlobalContainer>svg:nth-child(2):hover {
+.headerItens>svg:nth-child(2):hover {
     fill: var(--Main-Pokemon-Logo);
 }
 
 /* *** Media Queries - Responsive CSS *** */
 @media (max-width:768px) and (orientation: landscape) {
-    .headerGlobalContainer>svg:nth-child(1) {
+    .headerItens>svg:nth-child(1) {
         margin-left: 8rem;
         place-self: start;
         align-self: center;
     }
 
-    .headerGlobalContainer>svg:nth-child(2) {
-        margin-right: 6.5rem;
+    .headerItens>svg:nth-child(2) {
+        margin-right: 7rem;
     }
 }
 
 /* iPads/Tablets */
 @media (min-width: 768px) {
-    .headerGlobalContainer>svg:nth-child(1) {
+    .headerItens>svg:nth-child(1) {
         margin-left: 8rem;
         place-self: start;
         align-self: center;
     }
 
-    .headerGlobalContainer>svg:nth-child(2) {
-        margin-right: 6.5rem;
+    .headerItens>svg:nth-child(2) {
+        margin-right: 8rem;
     }
 }
