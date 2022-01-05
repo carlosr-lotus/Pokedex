@@ -1,0 +1,31 @@
+.headerGlobalContainer {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    place-items: center;
+}
+
+/* "Pokemon" Logo */
+.headerGlobalContainer>svg:nth-child(1) {
+    /* margin-left: 80px; */
+    color: #3c5aa6;
+    /* place-self: start;
+    align-self: center; */
+}
+
+/* "Dark Mode" icon */
+.headerGlobalContainer>svg:nth-child(2) {
+    margin-right: 45px;
+
+    place-self: end;
+    align-self: center;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.headerGlobalContainer>svg:nth-child(2):hover {
+    fill: blue;
+}
