@@ -46,7 +46,6 @@
     }
 }
 
-/* iPads/Tablets */
 @media (min-width: 768px) {
     .headerItens>svg:nth-child(1) {
         margin-left: 8rem;

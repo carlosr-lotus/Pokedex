@@ -1,4 +1,4 @@
-// *** NextJS native features *** //
+// *** Native features *** //
 // import type { NextPage } from 'next'
 import Head from 'next/head'
 
@@ -14,6 +14,7 @@ export default function Home() {
     <>
       <Head>
         <title>Pokedex | Home</title>
+        <meta charSet="UTF-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 

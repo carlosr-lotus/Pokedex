@@ -34,5 +34,13 @@
     position: absolute;
     left: 39px;
     top: 10px;
+
     fill: rgba(66, 66, 66, 0.527);
+
+    cursor: pointer;
+}
+
+.inputPokemonContainer img {
+    width: 150px;
+    height: 150px;
 }
