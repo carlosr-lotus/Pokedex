@@ -1,3 +1,4 @@
+// *** Styles *** //
 import styles from '../styles/components/Header.module.css';
 
 // *** Packages *** //
@@ -5,7 +6,7 @@ import { motion } from 'framer-motion';
 
 // *** Icons *** //
 import { SiPokemon } from 'react-icons/si';
-import { MdDarkMode } from 'react-icons/md';
+import { AiFillHeart } from 'react-icons/ai';
 
 // Animation presets for 'motion' //
 const variants = {
@@ -23,7 +24,7 @@ export default function Header() {
         >
             <div className={styles.headerItens}>
                 <SiPokemon size={110}></SiPokemon>
-                <MdDarkMode size={25} />
+                <AiFillHeart size={25} />
             </div>
         </motion.div>
     )
