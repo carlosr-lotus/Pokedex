@@ -1,8 +1,11 @@
-// This component has connections with the following components:
+// !!! This component sends data to the following components:
 // 'pokemonCard.tsx'
 
 // *** Native features *** //
 import { useEffect, useState } from 'react';
+
+// *** Components *** //
+import PokemonCard from './pokemonCard';
 
 // *** Packages *** //
 import axios from 'axios';
@@ -20,11 +23,11 @@ const variants = {
     visible: { opacity: 1 },
 }
 
-interface PokemonProps {
+export interface PokemonProps {
     name: string,
     abilities: [any],
     sprites: SpritesProps,
-    arroz?: string,
+    types: [any],
 }
 
 interface SpritesProps {
@@ -45,17 +48,18 @@ export default function SearchBar() {
 
     // Get pokemon data from API
     function searchPokemon(e) {
-        setSearch(e.target.value);
+        // console.log(pokemon);
+        // console.log(search);
 
-        if (e.target.value !== null) {
-            axios.get(`https://pokeapi.co/api/v2/pokemon/${e.target.value.toLowerCase()}/`)
+        if (search) {
+            axios.get(`https://pokeapi.co/api/v2/pokemon/${e.toLowerCase()}/`)
                 .then((res) => {
-                    console.log(res.data);
+                    console.log(res.data.types);
                     setPokemon(res.data);
                 }).catch(error => {
                     console.log(error);
                 })
-        }
+        };
     }
 
     return (
@@ -70,15 +74,16 @@ export default function SearchBar() {
             <div className={styles.inputPokemonContainer}>
                 <input placeholder="Pikachu..."
                     autoComplete="off"
-                    onKeyPress={(e) => e.key === "Enter" && searchPokemon(e)}
+                    onChange={(e) => { setSearch(e.target.value) }}
+                    onKeyPress={(e) => e.key === "Enter" && searchPokemon(search)}
                 />
-                <BiSearchAlt size={25} />
+                <BiSearchAlt size={25} onClick={() => searchPokemon(search)} />
 
                 {pokemon ?
                     <div>
-                        <img src={pokemon.sprites.front_default} />
-                        <h1>{pokemon.name}</h1>
-                        <h2>{pokemon.arroz}</h2>
+                        <PokemonCard
+                            data={pokemon}
+                        />
                     </div>
                     :
                     <div></div>}
