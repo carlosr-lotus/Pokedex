@@ -5,6 +5,11 @@
   --Pokemon-Card-Stats: rgb(250, 250, 250);
   --Transparent: rgba(238, 238, 238, 0.400);
 
+  /* Pokemon Stats Bar Colors */
+  --Red-Bar: #FF1602;
+  --Green-Bar: #66923D;
+  --Blue-Bar: #2226EA;
+
   /* 1rem = 10px */
   font-size: 62.5%;
 }
