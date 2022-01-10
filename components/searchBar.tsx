@@ -19,8 +19,8 @@ import { BiSearchAlt } from 'react-icons/bi';
 
 // Animation presets for 'motion' //
 const variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
+    hidden: { y: -100 },
+    visible: { y: 0 },
 }
 
 export interface PokemonProps {
