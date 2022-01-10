@@ -1,6 +1,9 @@
 // This component receives props/data from:
 // 'searchBar.tsx'
 
+// *** Packages *** //
+import { motion } from 'framer-motion';
+
 // *** Style CSS *** //
 import styles from '../styles/components/PokemonCard.module.css';
 
@@ -8,8 +11,14 @@ import styles from '../styles/components/PokemonCard.module.css';
 import { AiFillHeart } from 'react-icons/ai';
 import { BsFillLightningFill } from 'react-icons/bs';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { PokemonProps } from './searchBar';
+
+// Animation presets for 'motion' //
+const variants = {
+    hidden: { opacity: 0, x: -150 },
+    visible: { opacity: 1, x: 0 }
+}
 
 interface PokemonCardProps {
     data: PokemonProps
@@ -17,9 +26,7 @@ interface PokemonCardProps {
 
 export default function PokemonCard(props: PokemonCardProps) {
 
-    // const pokemon = props;
-
-    console.log(props.data.stats[0].base_stat);
+    const animationReset = useRef(1);
 
     function returnColorByPokemonType(type) {
         switch (type) {
@@ -61,10 +68,32 @@ export default function PokemonCard(props: PokemonCardProps) {
         }
     }
 
-    console.log(props.data.types);
+    function returnStatColorByPokemonName(name) {
+        switch (name) {
+            case 'hp': return 'var(--Green-Bar)'
+            case 'attack': return 'var(--Red-Bar)'
+            case 'defense': return 'var(--Blue-Bar)'
+            case 'special-attack': return 'var(--Red-Bar)'
+            case 'special-defense': return 'var(--Blue-Bar)'
+            case 'speed': return 'var(--Blue-Bar)'
+            default: {
+                return 'var(--Green-Bar)'
+            }
+        }
+    }
 
     return (
-        <div
+        <motion.div
+            drag
+            dragConstraints={{
+                top: -150,
+                right: 150,
+                bottom: 150,
+                left: -150
+            }}
+            initial="hidden"
+            animate="visible"
+            variants={variants}
             className={styles.pokemonCardContainer}
             style={{ backgroundColor: returnColorByPokemonType(props.data.types[0].type.name).colorPrimary }}
         >
@@ -92,25 +121,36 @@ export default function PokemonCard(props: PokemonCardProps) {
             <div className={styles.pokemonStatsContainer}>
                 <h3>Base Stats</h3>
 
-
                 {props.data.stats.map((data, index) => {
                     console.log(data);
                     return (
-                        <div className={styles.pokemonStatsDetailsContainer}>
+                        <div className={styles.pokemonStatsDetailsContainer} key={index}>
+
                             <p className={styles.statsID}>
                                 {returnFormattedStatName(data.stat.name)}
                             </p>
+
                             <p className={styles.statsAmountNumber}>
                                 {data.base_stat}
                             </p>
+
                             <div className={styles.statsBar}>
-                                <div className={styles.statsBarFillingGreen}></div>
+                                <div
+                                    className={styles.statsBarFilling}
+                                    style={{
+                                        width: `${data.base_stat}%`,
+                                        backgroundColor: returnStatColorByPokemonName(data.stat.name)
+                                    }}
+                                >
+                                    {data.base_stat > 100 ? <p>+</p> : ''}
+                                </div>
                             </div>
+
                         </div>
                     )
                 })}
 
             </div>
-        </div>
+        </motion.div>
     )
 }
