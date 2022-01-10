@@ -2,7 +2,7 @@
 // 'pokemonCard.tsx'
 
 // *** Native features *** //
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 // *** Components *** //
 import PokemonCard from './pokemonCard';
@@ -28,6 +28,7 @@ export interface PokemonProps {
     abilities: [any],
     sprites: SpritesProps,
     types: [any],
+    stats: [any],
 }
 
 interface SpritesProps {
@@ -46,19 +47,25 @@ export default function SearchBar() {
     const [pokemon, setPokemon] = useState<PokemonProps>(null);
     const [search, setSearch] = useState('');
 
+    const searchInput = useRef(null);
+
+    // Input focus when page loads
+    useEffect(() => {
+        searchInput.current.focus();
+    }, [])
+
     // Get pokemon data from API
     function searchPokemon(e) {
-        // console.log(pokemon);
-        // console.log(search);
-
         if (search) {
             axios.get(`https://pokeapi.co/api/v2/pokemon/${e.toLowerCase()}/`)
                 .then((res) => {
-                    console.log(res.data.types);
                     setPokemon(res.data);
+                    console.log(res.data);
                 }).catch(error => {
                     console.log(error);
                 })
+        } else {
+            console.log('Please, type a pokemon name...')
         };
     }
 
@@ -76,6 +83,7 @@ export default function SearchBar() {
                     autoComplete="off"
                     onChange={(e) => { setSearch(e.target.value) }}
                     onKeyPress={(e) => e.key === "Enter" && searchPokemon(search)}
+                    ref={searchInput}
                 />
                 <BiSearchAlt size={25} onClick={() => searchPokemon(search)} />
 
