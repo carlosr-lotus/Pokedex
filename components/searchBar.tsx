@@ -45,6 +45,7 @@ interface SpritesProps {
 export default function SearchBar() {
 
     const [pokemon, setPokemon] = useState<PokemonProps>(null);
+    const [found, setFound] = useState(true);
     const [search, setSearch] = useState('');
 
     const searchInput = useRef(null);
@@ -52,20 +53,30 @@ export default function SearchBar() {
     // Input focus when page loads
     useEffect(() => {
         searchInput.current.focus();
+
+        // axios.get(`https://pokeapi.co/api/v2/pokemon/`)
+        //     .then((res) => {
+        //         console.log(res.data.results);
+        //     }).catch(error => {
+        //         console.log(error);
+        //     })
     }, [])
 
-    // Get pokemon data from API
+    // Get specific pokemon data from API
     function searchPokemon(e) {
         if (search) {
             axios.get(`https://pokeapi.co/api/v2/pokemon/${e.toLowerCase()}/`)
                 .then((res) => {
                     setPokemon(res.data);
+                    setFound(true);
                     console.log(res.data);
                 }).catch(error => {
+                    setPokemon(null);
+                    setFound(false);
                     console.log(error);
                 })
         } else {
-            console.log('Please, type a pokemon name...')
+            setFound(false);
         };
     }
 
@@ -88,13 +99,12 @@ export default function SearchBar() {
                 <BiSearchAlt size={25} onClick={() => searchPokemon(search)} />
 
                 {pokemon ?
-                    <div>
-                        <PokemonCard
-                            data={pokemon}
-                        />
-                    </div>
+                    <PokemonCard
+                        data={pokemon}
+                    />
                     :
-                    <div></div>}
+                    <h1>{found ? '' : 'Pokémon not found.'}</h1>
+                }
             </div>
         </motion.div>
     )
