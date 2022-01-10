@@ -6,6 +6,7 @@ import styles from '../styles/components/PokemonCard.module.css';
 
 // *** Icons *** //
 import { AiFillHeart } from 'react-icons/ai';
+import { BsFillLightningFill } from 'react-icons/bs';
 
 import { useState } from 'react';
 import { PokemonProps } from './searchBar';
@@ -17,6 +18,8 @@ interface PokemonCardProps {
 export default function PokemonCard(props: PokemonCardProps) {
 
     // const pokemon = props;
+
+    console.log(props.data.stats[0].base_stat);
 
     function returnColorByPokemonType(type) {
         switch (type) {
@@ -44,6 +47,20 @@ export default function PokemonCard(props: PokemonCardProps) {
         }
     }
 
+    function returnFormattedStatName(name) {
+        switch (name) {
+            case 'hp': return `HP:`
+            case 'attack': return `Attack:`
+            case 'defense': return `Defense:`
+            case 'special-attack': return 'Sp. Atk:'
+            case 'special-defense': return 'Sp. Def:'
+            case 'speed': return `Speed:`;
+            default: {
+                return 'NonID';
+            }
+        }
+    }
+
     console.log(props.data.types);
 
     return (
@@ -53,13 +70,15 @@ export default function PokemonCard(props: PokemonCardProps) {
         >
             <AiFillHeart />
 
+            {/* *** Pokemon Details *** */}
             <div className={styles.pokemonDetailsContainer}>
                 <h1>{props.data.name.charAt(0).toUpperCase() + props.data.name.slice(1)}</h1>
 
                 {props.data.types.map((pokemon, index) => {
                     return (
-                        <div className={styles.pokemonType} >
-                            <h2>{pokemon.type.name.charAt(0).toUpperCase() + pokemon.type.name.slice(1)}</h2>
+                        <div className={styles.pokemonType} key={index}>
+                            {/* <h2>Eletronics hehe</h2>
+                            <h2>Psychic</h2> */}
                         </div>
                     )
                 })}
@@ -69,10 +88,28 @@ export default function PokemonCard(props: PokemonCardProps) {
                 </div>
             </div>
 
+            {/* *** Pokemon Stats Details */}
             <div className={styles.pokemonStatsContainer}>
                 <h3>Base Stats</h3>
-                <p>Attack: </p>
-                <p>Defense: </p>
+
+
+                {props.data.stats.map((data, index) => {
+                    console.log(data);
+                    return (
+                        <div className={styles.pokemonStatsDetailsContainer}>
+                            <p className={styles.statsID}>
+                                {returnFormattedStatName(data.stat.name)}
+                            </p>
+                            <p className={styles.statsAmountNumber}>
+                                {data.base_stat}
+                            </p>
+                            <div className={styles.statsBar}>
+                                <div className={styles.statsBarFillingGreen}></div>
+                            </div>
+                        </div>
+                    )
+                })}
+
             </div>
         </div>
     )
