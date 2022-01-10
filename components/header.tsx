@@ -10,7 +10,7 @@ import { AiFillHeart } from 'react-icons/ai';
 
 const variants = {
     hidden: { y: -100 },
-    visible: { y: 0 },
+    visible: { y: 0, transition: { delay: .5 } },
 }
 
 export default function Header() {
@@ -21,7 +21,6 @@ export default function Header() {
             <motion.div
                 initial="hidden"
                 animate="visible"
-                transition={{ delay: .5 }}
                 variants={variants}
                 className={styles.headerItens}
             >
