@@ -1,5 +1,8 @@
-// This component receives props/data from:
+// !!! This component receives props/data from:
 // 'searchBar.tsx'
+
+// *** Native functions *** //
+import { useRef } from 'react';
 
 // *** Packages *** //
 import { motion } from 'framer-motion';
@@ -9,9 +12,7 @@ import styles from '../styles/components/PokemonCard.module.css';
 
 // *** Icons *** //
 import { AiFillHeart } from 'react-icons/ai';
-import { BsFillLightningFill } from 'react-icons/bs';
 
-import { useState, useRef } from 'react';
 import { PokemonProps } from './searchBar';
 
 // Animation presets for 'motion' //
@@ -25,8 +26,6 @@ interface PokemonCardProps {
 }
 
 export default function PokemonCard(props: PokemonCardProps) {
-
-    const animationReset = useRef(1);
 
     function returnColorByPokemonType(type) {
         switch (type) {
@@ -86,10 +85,10 @@ export default function PokemonCard(props: PokemonCardProps) {
         <motion.div
             drag
             dragConstraints={{
-                top: -150,
-                right: 150,
-                bottom: 150,
-                left: -150
+                top: -0,
+                right: 250,
+                bottom: 250,
+                left: -250
             }}
             initial="hidden"
             animate="visible"
@@ -103,14 +102,16 @@ export default function PokemonCard(props: PokemonCardProps) {
             <div className={styles.pokemonDetailsContainer}>
                 <h1>{props.data.name.charAt(0).toUpperCase() + props.data.name.slice(1)}</h1>
 
-                {props.data.types.map((pokemon, index) => {
-                    return (
-                        <div className={styles.pokemonType} key={index}>
-                            {/* <h2>Eletronics hehe</h2>
-                            <h2>Psychic</h2> */}
-                        </div>
-                    )
-                })}
+                <div className={styles.pokemonTypeContainer}>
+                    {props.data.types.map((pokemon, index) => {
+
+                        return (
+                            <div className={styles.pokemonType} key={index}>
+                                <h2>{pokemon.type.name.charAt(0).toUpperCase() + pokemon.type.name.slice(1)}</h2>
+                            </div>
+                        )
+                    })}
+                </div>
 
                 <div className={styles.imageBackground}>
                     <img src={props.data.sprites.front_default} />
@@ -122,7 +123,6 @@ export default function PokemonCard(props: PokemonCardProps) {
                 <h3>Base Stats</h3>
 
                 {props.data.stats.map((data, index) => {
-                    console.log(data);
                     return (
                         <div className={styles.pokemonStatsDetailsContainer} key={index}>
 
