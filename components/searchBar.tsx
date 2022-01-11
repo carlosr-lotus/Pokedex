@@ -53,14 +53,7 @@ export default function SearchBar() {
     // Input focus when page loads
     useEffect(() => {
         searchInput.current.focus();
-
-        // axios.get(`https://pokeapi.co/api/v2/pokemon/`)
-        //     .then((res) => {
-        //         console.log(res.data.results);
-        //     }).catch(error => {
-        //         console.log(error);
-        //     })
-    }, [])
+    }, []);
 
     // Get specific pokemon data from API
     function searchPokemon(e) {
@@ -69,11 +62,9 @@ export default function SearchBar() {
                 .then((res) => {
                     setPokemon(res.data);
                     setFound(true);
-                    console.log(res.data);
                 }).catch(error => {
                     setPokemon(null);
                     setFound(false);
-                    console.log(error);
                 })
         } else {
             setFound(false);
